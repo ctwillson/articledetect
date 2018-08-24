@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<title>MEIZU KERNEL</title>
+<!--<style>
+body
+{
+		background-color:#b0c4de;
+}
+.center {text-align: center}
+</style>-->
+    <style type="text/css">  
+    body{ font-size:14px;}  
+    input{ vertical-align:middle; margin:0; padding:0}  
+    .file-box{ position:relative;width:340px}  
+    .txt{ height:22px; border:1px solid #cdcdcd; width:180px;}  
+    .btn{ vertical-align:middle; margin:0; padding:0;background-color:#FFF; border:1px solid #CDCDCD;height:24px; width:70px;}  
+    .file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:260px }  
+		</style> 
+<!--<style>
+footer{
+    width: 100%;
+    height:100px;   /* footer的高度一定要是固定值*/ 
+    position:absolute;
+    bottom:0px;
+    left:0px;
+}
+</style>-->
+<h1 align="center"><font color="#00CCFF">MEIZU Kernel Team</font></h1>
+<center><img src="{{ url_for('static', filename='images/linux.jpeg') }}" width="100" height="100"/></center>
+<form action="" method="POST" enctype="multipart/form-data">
+     {{ form.hidden_tag() }}
+	 <input type='text' name='textfield' id='textfield' class='txt' />  
+	{{ form.markdown() }}
+	<input type="file" name="fileField" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" />  
+
+	 <!--{% for error in form.markdown.errors %}
+	     <span style="color: red;">{{ error }}</span>
+		 {% endfor %}-->
+	 {{ form.submit(class="btn") }}
+     {% for error in form.markdown.errors %}
+         <span style="color: red;">{{ error }}</span>
+         {% endfor %}
+
+</form>
+<!-- <div class="file-box">  
+      <form action="" method="post" enctype="multipart/form-data">  
+     <input type='text' name='textfield' id='textfield' class='txt' />    
+     <input type='button' class='btn' value='浏览...' />  
+        <input type="file" name="fileField" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" />  
+     <input type="submit" name="submit" class="btn" value="上传" />  
+      </form>  
+</div>-->
+{% if test %}
+<br>
+<li>{{ test }}</li>
+{% endif %}
+
+
+<!--<ul>
+	{ % for comment in test2 % }
+		<li>{{ comment }}</li>
+	{ % endfor % }
+</ul>-->
+
+
+<!--<ul>
+{% for key in my_dict %}
+<li>{{ my_dict[key]|e }}</li>
+{% endfor %}
+</ul>-->
+<dl>
+{% for key, value in my_dict.iteritems() %}
+<dt><nobr>第<nobr>{{ key|e }}<nobr>行:</dt>
+    <dd>{{ ", ".join(value)|e }}</dd>
+{% endfor %}
+</dl>
+<footer><font color="#00CCFF">Usage:</font>文件md结尾,暂只支持utf-8编码,bug钉钉联系:陈安</footer>
